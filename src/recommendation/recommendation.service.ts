@@ -7,6 +7,7 @@ import { Recommendation } from './entities/recommendation.entity';
 import { AuthService } from 'src/auth/auth.service';
 import { User } from 'src/auth/entities/user.entity';
 import { TaskService } from 'src/task/task.service';
+import { AiService } from '../ai/ai.service';
 
 @Injectable()
 export class RecommendationService {
@@ -16,7 +17,10 @@ export class RecommendationService {
     @InjectRepository(Recommendation)
     private readonly recommendationRepository: Repository<Recommendation>,
 
-    private readonly taskService: TaskService
+    private readonly taskService: TaskService,
+
+    private readonly aiService: AiService
+
 
   ) { }
 
@@ -26,19 +30,30 @@ export class RecommendationService {
 
       const tasks = await this.taskService.findAllPendingByUser(user.id);
 
-      const fakePlan = {
-        message: "Plan generado basado en tus tareas",
-        totalTask: tasks.length,
-        task: tasks.map(task => ({
-          title: task.title,
-          deadline: task.deadline,
-          difficulty: task.difficulty
-        }))
+      // Horas que tiene el usuario para estudiar
+      const userContext = {
+        availableHoursPerDay: user.availableHoursPerDay
+      };
+
+      // const fakePlan = {
+      //   message: "Plan generado basado en tus tareas",
+      //   totalTask: tasks.length,
+      //   task: tasks.map(task => ({
+      //     title: task.title,
+      //     deadline: task.deadline,
+      //     difficulty: task.difficulty
+      //   }))
+      // }
+
+      const generated_plan = await this.aiService.generateStudyPlan(tasks, userContext)
+
+      if (!generated_plan) {
+        throw new Error('La IA no devolvió datos');
       }
 
       const recommendation = this.recommendationRepository.create({
         user,
-        generated_plan: fakePlan
+        generated_plan: generated_plan
       })
 
       await this.recommendationRepository.save(recommendation);

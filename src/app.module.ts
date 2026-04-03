@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { TaskModule } from './task/task.module';
 import { RecommendationModule } from './recommendation/recommendation.module';
+import { AiModule } from './ai/ai.module';
 
 
 @Module({
@@ -26,7 +27,9 @@ import { RecommendationModule } from './recommendation/recommendation.module';
 
     TaskModule,
 
-    RecommendationModule
+    RecommendationModule,
+
+    AiModule
 
   ],
 })

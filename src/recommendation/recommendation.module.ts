@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Recommendation } from './entities/recommendation.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { TaskModule } from 'src/task/task.module';
+import { AiModule } from 'src/ai/ai.module';
 
 @Module({
   controllers: [RecommendationController],
@@ -12,7 +13,8 @@ import { TaskModule } from 'src/task/task.module';
   imports: [
     TypeOrmModule.forFeature([Recommendation]),
     AuthModule,
-    TaskModule
+    TaskModule,
+    AiModule
   ]
 })
 export class RecommendationModule { }
