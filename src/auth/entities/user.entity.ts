@@ -1,3 +1,4 @@
+import { Recommendation } from "src/recommendation/entities/recommendation.entity";
 import { Task } from "src/task/entities/task.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -36,10 +37,20 @@ export class User {
 
 
 
-    // Relacion uno a muchos
+    // Relacion uno a muchos a task
+    // Un usuario puede tener muchos task
+    // Muchas task pertenecen a un solo usuario
     @OneToMany(
         () => Task,
         (task) => task.user
     )
     task: Task[]
+
+
+    // Relacion uno a muchos a recommendations
+    @OneToMany(
+        () => Recommendation,
+        (recommendation) => recommendation.user
+    )
+    recommendations: Recommendation[];
 } 

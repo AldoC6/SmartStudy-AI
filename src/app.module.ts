@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { TaskModule } from './task/task.module';
+import { RecommendationModule } from './recommendation/recommendation.module';
 
 
 @Module({
@@ -23,7 +24,9 @@ import { TaskModule } from './task/task.module';
 
     AuthModule,
 
-    TaskModule
+    TaskModule,
+
+    RecommendationModule
 
   ],
 })
