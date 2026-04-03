@@ -24,9 +24,16 @@ export class RecommendationService {
 
     try {
 
+      const tasks = await this.taskService.findAllPendingByUser(user.id);
+
       const fakePlan = {
-        message: "Plan generado (placeholder)",
-        task: []
+        message: "Plan generado basado en tus tareas",
+        totalTask: tasks.length,
+        task: tasks.map(task => ({
+          title: task.title,
+          deadline: task.deadline,
+          difficulty: task.difficulty
+        }))
       }
 
       const recommendation = this.recommendationRepository.create({
@@ -41,7 +48,7 @@ export class RecommendationService {
     } catch (error) {
 
       console.log(error)
-      throw new InternalServerErrorException(`La cague en algo`, error)
+      throw new InternalServerErrorException(`Error generando la recomendación`, error)
     }
 
   }
@@ -49,7 +56,9 @@ export class RecommendationService {
   async findAllByUser(userId: number) {
 
     const allRecomendations = await this.recommendationRepository.find({
-      where: { user: { id: userId } }
+      where: {
+        user: { id: userId }
+      }
     })
 
     return allRecomendations;

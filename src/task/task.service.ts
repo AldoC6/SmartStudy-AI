@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, Logger, 
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from './entities/task.entity';
+import { Task, TaskStatus } from './entities/task.entity';
 import { DataSource, Repository } from 'typeorm';
 import { User } from 'src/auth/entities/user.entity';
 
@@ -46,6 +46,18 @@ export class TaskService {
 
     const allTask = await this.taskRepository.find({
       where: { user: { id: userId } }
+    })
+
+    return allTask;
+  }
+
+  async findAllPendingByUser(userId: number) {
+
+    const allTask = await this.taskRepository.find({
+      where: {
+        user: { id: userId },
+        status: TaskStatus.PENDING
+      }
     })
 
     return allTask;
