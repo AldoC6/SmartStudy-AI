@@ -22,7 +22,7 @@ export class AiService {
             title: task.title,
             difficulty: task.difficulty,
             deadline: task.deadline,
-            estimated_time: task.estimated_time
+            estimatedTime: task.estimatedTime
         }));
 
         try {
