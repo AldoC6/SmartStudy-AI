@@ -79,15 +79,4 @@ export class RecommendationService {
     return allRecomendations;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} recommendation`;
-  }
-
-  update(id: number, updateRecommendationDto: UpdateRecommendationDto) {
-    return `This action updates a #${id} recommendation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} recommendation`;
-  }
 }

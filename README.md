@@ -2,97 +2,123 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Hola, este es el proyecto backend de redes neuronales, el proyecto funciona como una API REST que tiene como objetivo comunicarse con una aplicacion frontend, siendo el frontend quien consume de esta API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ npm install
+### Programas necesarios
+1. Docker Desktop (La bd es en postgresql, esta en un contenedor en docker para evitar instalar todo lo de postgre)
+2. POSTMAN (Para probar los endpoints del backend)
+3. Tener instalado NESTCLI de preferencia. Mas información en este link: 
+```
+https://docs.nestjs.com/cli/overview
+```
+o correr este comando en el cmd para instalarlo directamente
+```
+npm install -g @nestjs/cli
+```
+4. Tener un programa para visualizar la BD, en mi caso yo tengo Table Plus, lo pueden descargar en este link:
+```
+https://tableplus.com/download/
 ```
 
-## Compile and run the project
 
-```bash
-# development
-$ npm run start
+### Pasos para correr el proyecto
 
-# watch mode
-$ npm run start:dev
+1. Clonar el repositorio
+2. Descargar dependencias
+```
+npm install
+```
+3. Copiar el archivo ```.env.template``` y renombrarlo ```.env```
+4. Colocar las variables de entorno por las suyas propias
+5. Preparar y lanzar la base de datos en este comando
+```
+docker-compose up -d
+```
+6. Levantar el proyecto
+```
+npm run start:dev
+``` 
 
-# production mode
-$ npm run start:prod
+### Pasos para conectar TablePlus con la BD
+1. Entrar a TablePlus
+2. Dar click en el signo de "+" y seleccionar ``PostgreSQL``
+3. En el campo "Name" colocar (El nombre es arbitrario):
+```
+ProyectoRedesNeuronales
+```
+4. En el campo "Host" colocar el valor de la variable de entorno ``DB_HOST``
+5. En el campo "User" agregar el valor de la variable de entorno ``DB_USERNAME``
+6. Campo "Password" agregar el valor de la variable de entorno ``DB_PASSWORD``
+7. En el campo "Port" agregar el valor de la variable de entorno ``DB_PORT``
+8. Hacer Click en "test" si responde "ok" entonces hay conexion con la bd, sino comprobar los valores agregados
+9. Dar click en connect
+
+### Diagrama Entidad - Relación
+```
+https://dbdiagram.io/d/ProyectoRedesNeuronales-68d066fc960f6d821a1c52b6
 ```
 
-## Run tests
+### Conseguir la API KEY de Gemini
+Para esta parte no estamos usando una red neuronal como tal, sino la API de Gemini, para que ustedes la pueden usar tienen que seguir esta serie de pasos
 
-```bash
-# unit tests
-$ npm run test
+1. Ir a este link:
+```
+https://aistudio.google.com/welcome?utm_source=google&utm_medium=cpc&utm_campaign=Cloud-SS-DR-AIS-FY26-global-gsem-1713578&utm_content=text-ad&utm_term=KW_google%20studio&gad_source=1&gad_campaignid=23417416052&gbraid=0AAAAACn9t652w7jLoTz-0WJrqeXTMr33E&gclid=Cj0KCQjw-pHPBhCdARIsAHXYWP9gEbVplUAE8ani2dRy0TvpjN2hcFzRwTj7a0-eQrcDNJKSs6n-x7UaArytEALw_wcB
+```
+2. Iniciar sesión o registrarse
+3. Dar click en el boton ``Get an API key ``
+4. Dar click en ``Crear clave de API ``
+5. Asignar un nombre a la clave (si les pide proyecto pongan default gemini proyect)
+6. Le dan a boton ``Crear Clave``
+7. Copiar la clave y pegarla en las variables de entorno
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### Endpoints Disponibles
+Para ver la documentacion de los endpoinst que es utilizando swagger, visiten el siguiente link con el proyecto levantado:
+```
+http://localhost:3000/api
 ```
 
-## Deployment
+### Modulos del proyecto
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+1. Auth: Este modulo se encarga de inicar sesion o registrar a un nuevo usuario, usando JWT para la autenticacion 
+ - Cuerpo que espera la peticion de agregar un nuevo usuario 
+```
+{
+    "name": "Aldo Raymundo Cavazos Caro",
+    "email": "aldo158@gmail.com",
+    "password": "Abc123",
+    "availableHoursPerDay": 12
+}
+```
+ - Cuerpo que espera la peticion de iniciar sesión 
+```
+{
+    "email": "aldo158@gmail.com",
+    "password": "Abc123",
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+2. Task: Este modulo espera que usuario autenticado agregue sus actividades para despues utilizar el modulo recommendation
+ - Cuerpo esperado en peticion POST crear un nuevo task:
+```
+{
+    "title": "Alegrba para Ingenieria",
+    "description": "Resolver los problemas de los examenes que filtraron",
+    "difficulty": 10,
+    "estimatedTime": 60,
+    "deadline": "5-04-2026"
+}
+```
 
-## Resources
+3. Recommendation: Este modulo para usarse necesita minimo 1 task ya agregada por el usuario al momento de hacer la peticion POST ya usa la API de gemini y genera el plan de estudios
 
-Check out a few resources that may come in handy when working with NestJS:
+4. ai: Este modulo no tiene endpoints, simplemente se comnunica con el modulo anterior para generar una respuesta de gemini
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
+### Utilizar endpoints en POSTMAN
+En la raiz del proyecto hay un archivo llamado: ``ProyectoRedes.postman_collection`` con este archivo se tienen que ir a:
+```
+ postman > import > files
+```
+Asi tendran todos los endpoints en POSTMAN a la mano
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

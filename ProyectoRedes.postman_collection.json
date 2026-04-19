@@ -1,0 +1,328 @@
+{
+  "info": {
+    "_postman_id": "d228f953-bd0d-4eb0-83d6-6621a9dd7131",
+    "name": "ProyectoRedes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48092983",
+    "_collection_link": "https://go.postman.co/collection/48092983-d228f953-bd0d-4eb0-83d6-6621a9dd7131?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Registro de usuario",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE1MTMxYmNjLTJiMzYtNDhkZi05MGI1LWY3YWRhMWE2ODg2OCIsImlhdCI6MTc3NDk5MDM5OCwiZXhwIjoxNzc0OTk3NTk4fQ.Vs9ZUjZPGswrTfVunn5c00cdbG1nBVEyC_yzJ8pUx48",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"name\": \"Aldo Raymundo Cavazos Caro\",\r\n    \"email\": \"aldo158@gmail.com\",\r\n    \"password\": \"Abc123\",\r\n    \"availableHoursPerDay\": 12\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Iniciar sesion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"email\": \"aldo158@gmail.com\",\r\n    \"password\": \"Abc123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear un nuevo Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MjQ5Njc5LCJleHAiOjE3NzUyNTY4Nzl9.XLXi1RvWCTTI2XW62UDCtwSt6Dbnt83o5AywRw54Dyo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"title\": \"Alegrba para Ingenieria\",\r\n    \"description\": \"Resolver los problemas de los examenes que filtraron\",\r\n    \"difficulty\": 10,\r\n    \"estimatedTime\": 60,\r\n    \"deadline\": \"5-04-2026\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Todas las task por usuario",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MjU3MTA2LCJleHAiOjE3NzUyNjQzMDZ9.085w3rlWAXi7yinaP-Bncd6ye3P4xrIprADrj9YKl00",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"title\": \"Prueba6564\",\r\n    \"description\": \"Que te valga pues\",\r\n    \"difficulty\": 10,\r\n    \"estimatedTime\": 5,\r\n    \"deadline\": \"5-04-2026\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "task por ID o titulo",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MTcyMTE1LCJleHAiOjE3NzUxNzkzMTV9.lFHqPSM4zIc32FqxmTXn5gY-RGnvbD79yd07_IrT-PI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/task/Fisica ",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "task",
+            "Fisica "
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MjQ5Njc5LCJleHAiOjE3NzUyNTY4Nzl9.XLXi1RvWCTTI2XW62UDCtwSt6Dbnt83o5AywRw54Dyo",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Algebra para Ingenieria\",\r\n    \"status\": \"Pendiente\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/task/13",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "task",
+            "13"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Task",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MTcyMTE1LCJleHAiOjE3NzUxNzkzMTV9.lFHqPSM4zIc32FqxmTXn5gY-RGnvbD79yd07_IrT-PI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/task/10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "task",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST recomendacion",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzc1MjU3MTA2LCJleHAiOjE3NzUyNjQzMDZ9.085w3rlWAXi7yinaP-Bncd6ye3P4xrIprADrj9YKl00",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/recommendation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "recommendation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Todas recomendaciones por usuario",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzc1MzM2NTI0LCJleHAiOjE3NzUzNDM3MjR9.ZfzvkoB_ST3E0bTZPJc4DBqWXQ7fzQJdGdYKRJVHwXU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/recommendation",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "recommendation"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
