@@ -1,0 +1,143 @@
+{
+  "project_name": "SmartStudy AI",
+  "theme_mode": "dark",
+  "archetype": "Hybrid: Archetype 2 (Performance Pro) + Archetype 5 (Jewel & Luxury). Deep Obsidian baseline with vivid neon accents tailored for an elite educational SaaS. Avoids generic AI UI slop.",
+  "language": "es",
+  "colors": {
+    "background": {
+      "default": "#0A0D14",
+      "description": "Deep Obsidian/Midnight Blue. Never use pure black or generic gray."
+    },
+    "surface": {
+      "card": "#11151F",
+      "sidebar": "#0C0F17",
+      "navbar": "rgba(10, 13, 20, 0.7)",
+      "description": "Flat, sharp surfaces with 1px subtle borders. Glassmorphism exclusively for top sticky navbar."
+    },
+    "border": {
+      "default": "#1E2536",
+      "focus": "#00E5FF",
+      "description": "Crisp 1px borders to separate elements without using muddy drop shadows."
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#94A3B8",
+      "muted": "#64748B"
+    },
+    "primary": {
+      "main": "#00E5FF",
+      "hover": "#33EEFF",
+      "text": "#0A0D14",
+      "description": "Vivid Cyan for primary CTAs and active states."
+    },
+    "status": {
+      "pendiente": {
+        "bg": "rgba(148, 163, 184, 0.1)",
+        "text": "#94A3B8",
+        "border": "rgba(148, 163, 184, 0.2)"
+      },
+      "completado": {
+        "bg": "rgba(0, 230, 118, 0.1)",
+        "text": "#00E676",
+        "border": "rgba(0, 230, 118, 0.2)"
+      }
+    },
+    "risk_levels": {
+      "bajo": {
+        "name": "Riesgo bajo",
+        "color": "#00E676",
+        "bg": "rgba(0, 230, 118, 0.1)",
+        "border": "rgba(0, 230, 118, 0.2)"
+      },
+      "medio": {
+        "name": "Riesgo medio",
+        "color": "#FFEA00",
+        "bg": "rgba(255, 234, 0, 0.1)",
+        "border": "rgba(255, 234, 0, 0.2)"
+      },
+      "alto": {
+        "name": "Riesgo alto",
+        "color": "#FF4D4D",
+        "bg": "rgba(255, 77, 77, 0.1)",
+        "border": "rgba(255, 77, 77, 0.2)"
+      }
+    }
+  },
+  "typography": {
+    "fonts": {
+      "headings": "Outfit",
+      "body": "Manrope",
+      "banned": ["Inter", "Roboto", "Open Sans", "Lato", "Syne"]
+    },
+    "scale": {
+      "h1": "text-4xl tracking-tight font-bold",
+      "h2": "text-2xl tracking-tight font-semibold",
+      "h3": "text-xl font-semibold",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm",
+      "overline": "text-xs tracking-[0.2em] uppercase"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing, The 'Control Room' Grid.",
+    "global_padding": "p-6 md:p-8",
+    "dashboard_grid": {
+      "structure": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+      "summary_cards": "col-span-1",
+      "main_chart": "col-span-2 lg:col-span-3",
+      "side_feed": "col-span-1 row-span-2"
+    },
+    "navigation": {
+      "sidebar": "Fixed left, solid bg (#0C0F17), 1px right border (#1E2536). Active links use subtle Vivid Cyan left-border highlight.",
+      "topbar": "Sticky top, crystal glassmorphism (backdrop-blur-xl, bg-[#0A0D14]/70), 1px bottom border (#1E2536). Holds User Name, Avatar, Logout."
+    }
+  },
+  "components": {
+    "cards": {
+      "style": "Flat background (#11151F), max 8px border-radius (rounded-lg), 1px solid border (#1E2536), no default shadow. Hover: slight lift (-translate-y-1) and soft glow.",
+      "padding": "p-6"
+    },
+    "tables": {
+      "style": "Widespread layout. Header row uppercase, tiny, wide-spaced. Subtle 1px bottom border per row. Hover state on rows changes bg slightly (bg-white/5).",
+      "text_alignment": "Left-aligned unless numeric data which should be right-aligned."
+    },
+    "badges": {
+      "style": "Pill shape (rounded-full), px-3 py-1 text-xs font-medium. Uses low opacity backgrounds with bright colored text and 1px border. Used for Status and Risk Levels."
+    },
+    "buttons": {
+      "primary": "bg-[#00E5FF] text-[#0A0D14] font-semibold rounded-md px-6 py-2 transition-all hover:bg-[#33EEFF]",
+      "secondary": "bg-transparent text-white border border-[#1E2536] rounded-md px-6 py-2 transition-all hover:bg-[#1E2536]"
+    },
+    "inputs": {
+      "style": "bg-[#0A0D14] border border-[#1E2536] rounded-md px-4 py-2 text-white focus:border-[#00E5FF] focus:ring-1 focus:ring-[#00E5FF] transition-all outline-none"
+    },
+    "loading_states": {
+      "skeleton": "Pulse animation with background color #1E2536 and rounded-md. Avoid simple generic gray boxes. Use skeletons that map directly to the shape of the content loading."
+    }
+  },
+  "animations": {
+    "hover": "Button hover states explicitly define text color. Transition properties explicit (e.g., transition: transform 0.2s ease, background-color 0.2s ease).",
+    "page_transition": "Micro-interactions on tab switching or plan generation. Avoid heavy motion."
+  },
+  "media": {
+    "auth_background": {
+      "url": "https://images.unsplash.com/photo-1766958205141-2d775ea560a1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwyfHxkYXJrJTIwbW9kZXJuJTIwYXJjaGl0ZWN0dXJlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzc3MTMwMjA0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Dark textured architectural abstract for the login/register split-screen layout"
+    },
+    "user_avatar_placeholder": {
+      "url": "https://images.unsplash.com/photo-1772987273687-4866382c146f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBzdHVkZW50JTIwcG9ydHJhaXQlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzcxMzAyMDR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Placeholder professional student avatar for top navbar"
+    }
+  },
+  "testing": {
+    "attributes": "All interactive elements, inputs, form submissions, and major links MUST include a 'data-testid' attribute (e.g., data-testid='login-submit-btn', data-testid='task-status-badge')."
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the color hex codes provided in this guideline. Do not inject default generic gray palettes.",
+    "Implement the Layouts primarily using CSS Grid. Use the Bento/Control Room structure for the main dashboard metrics.",
+    "Do NOT use HTML `<input type='date'>` or native `<select>`. Rely entirely on customized Shadcn components (Calendar, Select, Form).",
+    "Use Phosphor Icons or Lucide-react for the sidebar and metric icons.",
+    "Ensure the Risk Analysis card clearly uses the specified 'risk_levels' colors for background, text, and border.",
+    "Avoid the standard 'Bootstrap' look. Use 1px borders and distinct padding scales instead of muddy box-shadows."
+  ]
+}
