@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+/frontend/node_modules
+
 
 /postgres-redes
 
