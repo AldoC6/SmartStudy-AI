@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0A0D14;
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #00E5FF;
+  color: #0A0D14;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0A0D14; }
+::-webkit-scrollbar-thumb { background: #1E2536; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #2a334a; }
+
+/* Reusable utility classes */
+.surface-card {
+  background-color: #11151F;
+  border: 1px solid #1E2536;
+  border-radius: 0.5rem;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #161b28 0%, #1E2536 40%, #161b28 80%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+  border-radius: 0.5rem;
+}
+
+.glass-nav {
+  background: rgba(10, 13, 20, 0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid #1E2536;
+}
+
+.font-heading { font-family: 'Outfit', sans-serif; }
+.font-body { font-family: 'Manrope', sans-serif; }
+
+/* Subtle grid background for hero */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(30, 37, 54, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 37, 54, 0.35) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Cyan glow utility */
+.cyan-glow {
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.25), 0 8px 32px -12px rgba(0, 229, 255, 0.45);
+}
