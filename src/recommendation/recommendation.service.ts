@@ -8,6 +8,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { User } from 'src/auth/entities/user.entity';
 import { TaskService } from 'src/task/task.service';
 import { AiService } from '../ai/ai.service';
+import { PyService } from 'src/py/py.service';
 
 @Injectable()
 export class RecommendationService {
@@ -19,7 +20,9 @@ export class RecommendationService {
 
     private readonly taskService: TaskService,
 
-    private readonly aiService: AiService
+    private readonly aiService: AiService,
+
+    private readonly pyService: PyService
 
 
   ) { }
@@ -67,6 +70,42 @@ export class RecommendationService {
     }
 
   }
+
+
+  async createPyRecommendation(user: User) {
+    try {
+
+      const tasks = await this.taskService.findAllPendingByUser(user.id);
+
+      // Horas que tiene el usuario para estudiar
+      const userContext = {
+        availableHoursPerDay: user.availableHoursPerDay
+      };
+
+      const response_py = await this.pyService.evaluateTasks(tasks, userContext.availableHoursPerDay);
+
+
+      const generated_plan = await this.aiService.generatePlanWithPython(response_py, userContext, tasks)
+
+      if (!generated_plan) {
+        throw new Error('La IA no devolvió datos');
+      }
+
+      const recommendation = this.recommendationRepository.create({
+        user,
+        generated_plan: generated_plan
+      })
+
+      await this.recommendationRepository.save(recommendation);
+
+      return recommendation
+
+    } catch (error) {
+      console.log(error)
+      throw new InternalServerErrorException(`Error generando la recomendación con Python`, error)
+    }
+  }
+
 
   async findAllByUser(userId: number) {
 

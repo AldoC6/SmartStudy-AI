@@ -6,6 +6,7 @@ import { Recommendation } from './entities/recommendation.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { TaskModule } from 'src/task/task.module';
 import { AiModule } from 'src/ai/ai.module';
+import { PyModule } from 'src/py/py.module';
 
 @Module({
   controllers: [RecommendationController],
@@ -14,7 +15,8 @@ import { AiModule } from 'src/ai/ai.module';
     TypeOrmModule.forFeature([Recommendation]),
     AuthModule,
     TaskModule,
-    AiModule
+    AiModule,
+    PyModule
   ]
 })
 export class RecommendationModule { }

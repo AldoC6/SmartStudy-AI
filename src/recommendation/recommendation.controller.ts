@@ -18,6 +18,14 @@ export class RecommendationController {
     return this.recommendationService.create(user);
   }
 
+  @Post('py')
+  @UseGuards(AuthGuard())
+  createPyRecommendation(
+    @GetUser() user: User
+  ) {
+    return this.recommendationService.createPyRecommendation(user);
+  }
+
   @Get()
   @UseGuards(AuthGuard())
   findAllByUser(

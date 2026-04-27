@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { TaskModule } from './task/task.module';
 import { RecommendationModule } from './recommendation/recommendation.module';
 import { AiModule } from './ai/ai.module';
+import { PyModule } from './py/py.module';
 
 
 @Module({
@@ -29,7 +30,9 @@ import { AiModule } from './ai/ai.module';
 
     RecommendationModule,
 
-    AiModule
+    AiModule,
+
+    PyModule
 
   ],
 })
