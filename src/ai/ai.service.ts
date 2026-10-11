@@ -7,6 +7,12 @@ export class AiService {
 
     private ai
 
+    // Sin "thinking" la respuesta tarda unos pocos segundos en vez de 20-40 s
+    private readonly generationConfig = {
+        responseMimeType: 'application/json',
+        thinkingConfig: { thinkingBudget: 0 }
+    };
+
     constructor(
         private readonly configService: ConfigService
     ) {
@@ -30,7 +36,8 @@ export class AiService {
 
             const response = await this.ai.models.generateContent({
                 model: "gemini-2.5-flash",
-                contents: prompt
+                contents: prompt,
+                config: this.generationConfig
             });
 
             const text = response.text;
@@ -67,7 +74,8 @@ export class AiService {
 
             const response = await this.ai.models.generateContent({
                 model: "gemini-2.5-flash",
-                contents: prompt
+                contents: prompt,
+                config: this.generationConfig
             });
 
             const text = response.text;

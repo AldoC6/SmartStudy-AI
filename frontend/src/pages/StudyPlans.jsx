@@ -88,9 +88,16 @@ export default function StudyPlans() {
     setGenerating(true);
     setGenError('');
     try {
-      await api.post('/recommendation');
+      // RN + Gemini puede tardar más que el timeout global de axios
+      await api.post('/recommendation/py', null, { timeout: 120000 });
       await load();
     } catch (err) {
+      if (err?.code === 'ECONNABORTED') {
+        // El backend puede haber terminado de guardar el plan aunque la respuesta tardara
+        await load();
+        setGenError('La generación tardó más de lo esperado. Si el plan no aparece, pulsa Recargar en unos segundos.');
+        return;
+      }
       const msg = err?.response?.data?.message || err?.message || 'No se pudo generar el plan.';
       setGenError(Array.isArray(msg) ? msg.join(' · ') : msg);
     } finally {

@@ -7,33 +7,23 @@ export class PyService {
 
     async evaluateTasks(tasks: any[], availableHours: number) {
         try {
-            const results = [];
-
-            for (const task of tasks) {
-                const res = await axios.post('http://127.0.0.1:8000/predictRN', {
+            // Las predicciones son independientes: se lanzan en paralelo
+            const results = await Promise.all(tasks.map(async (task) => {
+                const payload = {
                     horas: availableHours,
                     dificultad: task.difficulty,
                     estimated_time: task.estimatedTime / 60, // Convertir a horas
                     dias_restantes: this.calcularDias(task.deadline),
                     tasks: tasks.length
-                });
+                };
 
+                const res = await axios.post('http://127.0.0.1:8000/predictRN', payload, { timeout: 15000 });
 
-                console.log(task)
-
-                console.log({
-                    horas: availableHours,
-                    dificultad: task.difficulty,
-                    estimated_time: task.estimatedTime / 60,
-                    dias_restantes: this.calcularDias(task.deadline),
-                    tasks: tasks.length
-                })
-
-                results.push({
+                return {
                     taskId: task.id,
                     ...res.data
-                });
-            }
+                };
+            }));
 
 
             console.log('Resultados de Python:', results);
